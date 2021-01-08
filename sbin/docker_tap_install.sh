@@ -37,13 +37,11 @@ fi
 # Check if we have already been installed with the current version
 if file "${hyperkitPath}" | grep -Eiq '(Bourne-Again shell script|text executable|ASCII text)'; then
 	if cmp -s "${shimPath}" "${hyperkitPath}"; then
-		if [ -x "${hyperkitPath}" ]; then
+		if [ -x "${hyperkitPath}" ] && ifconfig tap1>/dev/null 2>&1; then
 			echo 'Already installed';
 			if ! echo $@ | grep -q '\-f'; then
 				echo 'Use "-f" argument if you want to restart hyperkit anyway'
-				if ifconfig tap1; then
-					exit 0
-				fi
+				exit 0
 			fi
 		else
 			chmod +x "${hyperkitPath}"
