@@ -2,6 +2,15 @@ docker-tuntap-osx
 ================
 docker-tuntap-osx is a tuntap support shim installer for Docker for Mac.
 
+This version is a fork of
+[AlmirKadric-Published/docker-tuntap-osx](https://github.com/AlmirKadric-Published/docker-tuntap-osx) 
+that wraps it up as a Homebrew formula that works in conjunction with
+[docker-lifecycle-listener](https://github.com/Mahoney/docker-lifecycle-listener)
+to avoid the steps below that otherwise need manual intervention on restart of
+Docker for Desktop or macOS, and on creation of a new bridge network.
+
+It can be installed as so: `brew install mahoney/tap/docker-tuntap-osx`
+
 The Problem
 -----------
 Current on Docker for Mac has no support for network routing into the Host Virtual Machine that is created using hyperkit. The reason for this is due to the fact that the network interface options used to create the instance does not create a bridge interface between the Physical Machine and the Host Virtual Machine. To make matters worse, the arguments used to create the Host Virtual Machine is hardcoded into the Docker for Mac binary with no means to configure it.
