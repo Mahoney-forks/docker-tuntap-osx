@@ -93,7 +93,7 @@ delete_unused_routes() {
   local routes_to_delete; routes_to_delete=$(not_in "$docker_bridge_network_subnets" "$existing_route_subnets")
   for route_to_delete in $routes_to_delete; do
   	sudo route delete "$route_to_delete"
-  	log "Deleted route to $subnet"
+  	log "Deleted route to $route_to_delete"
 	done
 }
 
